@@ -1,0 +1,296 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram name="Complete System ERD" id="complete-erd">
+    <mxGraphModel dx="1042" dy="756" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="legend-box" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="LEGEND - TWO-LAYER SECURITY MODEL" vertex="1">
+          <mxGeometry height="260" width="340" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-divider" parent="legend-box" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="340" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-content" parent="legend-box" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK = Primary Key  |  FK = Foreign Key&#xa;N = Many (0 or more)  |  1 = Exactly One&#xa;0..1 = Zero or One (optional)&#xa;&#xa;LAYER 1 - Functional Permissions (Pink):&#xa;  User → Group → Permission&#xa;  Controls: Read/Write/Authorize access&#xa;&#xa;LAYER 2 - Business Data Segregation (Purple):&#xa;  User → BusinessGroupMapping&#xa;  Controls: Which business data user can access&#xa;&#xa;Yellow = Main Entities  |  Orange = Hierarchy&#xa;Green = Reference Data  |  Blue = Organization" vertex="1">
+          <mxGeometry height="226" width="340" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="bfsi-group" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="BfsiGroup" vertex="1">
+          <mxGeometry height="86" width="200" x="900" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bfsi-group-divider" parent="bfsi-group" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="bfsi-group-fields" parent="bfsi-group" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     name: String&#xa;     description: String" vertex="1">
+          <mxGeometry height="52" width="200" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="bank" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="BANK" vertex="1">
+          <mxGeometry height="280" width="280" x="860" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="bank-divider" parent="bank" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="280" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="bank-fields" parent="bank" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     code: String (Unique)&#xa;     name: String&#xa;     description: String&#xa;FK  currencyId: String&#xa;FK  countryId: String&#xa;     nettingAllowedFlag: Boolean&#xa;FK  bfsiGroupId: String&#xa;     status: String (1=Active, 0=Inactive)&#xa;     nameLocal: String&#xa;     bankLogo: String" vertex="1">
+          <mxGeometry height="246" width="280" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="branch" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Branch" vertex="1">
+          <mxGeometry height="180" width="260" x="860" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="branch-divider" parent="branch" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="260" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="branch-fields" parent="branch" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;FK  bankId: String&#xa;     branchCode: String (Unique)&#xa;     branchName: String&#xa;     branchNameLocal: String&#xa;     address: String&#xa;     status: String (1=Active, 0=Inactive)&#xa;     isMainBranch: String (1=Yes, 0=No)&#xa;     createdTime: LocalDateTime" vertex="1">
+          <mxGeometry height="146" width="260" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="currency" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="Currency" vertex="1">
+          <mxGeometry height="100" width="200" x="1260" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="currency-divider" parent="currency" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="currency-fields" parent="currency" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     code: String (e.g. JOD, USD)&#xa;     symbol: String&#xa;     name: String" vertex="1">
+          <mxGeometry height="66" width="200" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="country" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Country" vertex="1">
+          <mxGeometry height="100" width="200" x="1260" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="country-divider" parent="country" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="country-fields" parent="country" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     name: String&#xa;     code: String (e.g. JO, US)&#xa;     region: String" vertex="1">
+          <mxGeometry height="66" width="200" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="appuser" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="AppUser" vertex="1">
+          <mxGeometry height="400" width="320" x="440" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="appuser-divider" parent="appuser" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="320" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="appuser-fields" parent="appuser" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     loginName: String (Unique)&#xa;     firstName: String&#xa;     lastName: String&#xa;FK  bankId: String&#xa;FK  branchId: String&#xa;     blockStatus: String (1=Blocked, 0=Active)&#xa;     isOverrideChecker: String (0/1)&#xa;     firstTimeLoginFlag: String (0/1)&#xa;     isActiveFlag: String (0/1)&#xa;     isLoggedIn: Integer (1/null)&#xa;     createdTime: LocalDateTime&#xa;     modifiedTime: LocalDateTime&#xa;     lastLoginTime: LocalDateTime&#xa;     firstNameLocal: String&#xa;     lastNameLocal: String&#xa;     userName: String (nullable)&#xa;     password: String (nullable, masked)&#xa;     softDelFlag: String (0/1)&#xa;     countAttempts: Integer" vertex="1">
+          <mxGeometry height="366" width="320" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="group" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Group" vertex="1">
+          <mxGeometry height="120" width="240" x="40" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="group-divider" parent="group" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="group-fields" parent="group" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     code: String (Unique)&#xa;     name: String&#xa;     url: String&#xa;     description: String" vertex="1">
+          <mxGeometry height="86" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="usergroup" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="UserGroup" vertex="1">
+          <mxGeometry height="130" width="240" x="40" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="usergroup-divider" parent="usergroup" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="usergroup-fields" parent="usergroup" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="FK  userId: String&#xa;FK  groupId: String&#xa;     persisted: Boolean&#xa;     assignedDate: LocalDateTime&#xa;     status: String (1=Active, 0=Inactive)" vertex="1">
+          <mxGeometry height="96" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="permission" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Permission" vertex="1">
+          <mxGeometry height="140" width="260" x="40" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="permission-divider" parent="permission" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="260" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="permission-fields" parent="permission" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;FK  groupId: String&#xa;     orderId: String&#xa;     moduleName: String&#xa;     isRead: Boolean&#xa;     isWrite: Boolean&#xa;     isAuthorize: Boolean&#xa;     isParentWithChildren: Boolean" vertex="1">
+          <mxGeometry height="106" width="260" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="user-business-mapping" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="UserBusinessGroupMapping" vertex="1">
+          <mxGeometry height="160" width="300" x="440" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="user-business-mapping-divider" parent="user-business-mapping" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="300" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="user-business-mapping-fields" parent="user-business-mapping" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;FK  userId: String&#xa;FK  bankId: String&#xa;FK  businessGroupId: String&#xa;FK  reportingGroupId: String&#xa;     groupId: String (Future use)&#xa;     categoryId: String (Future use)" vertex="1">
+          <mxGeometry height="126" width="300" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="business-group" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="BusinessGroup" vertex="1">
+          <mxGeometry height="100" width="240" x="860" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="business-group-divider" parent="business-group" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="business-group-fields" parent="business-group" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     code: String&#xa;     name: String&#xa;     description: String" vertex="1">
+          <mxGeometry height="66" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="reporting-group" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="ReportingGroup" vertex="1">
+          <mxGeometry height="110" width="240" x="860" y="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="reporting-group-divider" parent="reporting-group" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="reporting-group-fields" parent="reporting-group" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="PK  id: String&#xa;     code: String&#xa;     name: String&#xa;     description: String" vertex="1">
+          <mxGeometry height="76" width="240" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-bank-bfsigroup" edge="1" parent="1" source="bank" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" target="bfsi-group" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-bank-bfsigroup-many" connectable="0" parent="rel-bank-bfsigroup" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="0.6" y="1" as="geometry">
+            <mxPoint x="-10" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-bfsigroup-one" connectable="0" parent="rel-bank-bfsigroup" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="2" as="geometry">
+            <mxPoint x="-15" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-currency" edge="1" parent="1" source="bank" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitPerimeter=0;" target="currency" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-bank-currency-many" connectable="0" parent="rel-bank-currency" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-currency-one" connectable="0" parent="rel-bank-currency" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-country" edge="1" parent="1" source="bank" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitPerimeter=0;" target="country" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-bank-country-many" connectable="0" parent="rel-bank-country" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-country-one" connectable="0" parent="rel-bank-country" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-branch" edge="1" parent="1" source="bank" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;" target="branch" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-bank-branch-many" connectable="0" parent="rel-bank-branch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.6" y="1" as="geometry">
+            <mxPoint x="-10" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-bank-branch-one" connectable="0" parent="rel-bank-branch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="-10" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-bank" edge="1" parent="1" source="appuser" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitPerimeter=0;" target="bank" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-user-bank-many" connectable="0" parent="rel-user-bank" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-bank-one" connectable="0" parent="rel-user-bank" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-branch" edge="1" parent="1" source="appuser" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitPerimeter=0;" target="branch" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-user-branch-many" connectable="0" parent="rel-user-branch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-branch-one" connectable="0" parent="rel-user-branch" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-group-permission" edge="1" parent="1" source="group" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" target="permission" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-group-permission-many" connectable="0" parent="rel-group-permission" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.6" y="1" as="geometry">
+            <mxPoint x="-10" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-group-permission-one" connectable="0" parent="rel-group-permission" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="-10" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-usergroup-group" edge="1" parent="1" source="usergroup" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" target="group" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-usergroup-group-many" connectable="0" parent="rel-usergroup-group" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.6" y="1" as="geometry">
+            <mxPoint x="-10" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-usergroup-group-one" connectable="0" parent="rel-usergroup-group" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="-10" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-usergroup-user" edge="1" parent="1" source="usergroup" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;strokeWidth=2;entryPerimeter=0;" target="appuser" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-usergroup-user-many" connectable="0" parent="rel-usergroup-user" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-usergroup-user-one" connectable="0" parent="rel-usergroup-user" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-business-mapping" edge="1" parent="1" source="appuser" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;" target="user-business-mapping" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-user-business-mapping-many" connectable="0" parent="rel-user-business-mapping" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.6" y="1" as="geometry">
+            <mxPoint x="-10" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-business-mapping-one" connectable="0" parent="rel-user-business-mapping" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="-10" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-mapping-business" edge="1" parent="1" source="user-business-mapping" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitPerimeter=0;" target="business-group" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-mapping-business-many" connectable="0" parent="rel-mapping-business" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-mapping-business-one" connectable="0" parent="rel-mapping-business" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-mapping-reporting" edge="1" parent="1" source="user-business-mapping" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitPerimeter=0;" target="reporting-group" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-mapping-reporting-many" connectable="0" parent="rel-mapping-reporting" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-mapping-reporting-one" connectable="0" parent="rel-mapping-reporting" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-mapping-bank" edge="1" parent="1" source="user-business-mapping" style="endArrow=none;html=1;rounded=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;dashed=1;dashPattern=8 8;" target="bank" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-mapping-bank-many" connectable="0" parent="rel-mapping-bank" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1" value="N" vertex="1">
+          <mxGeometry relative="1" x="-0.7" y="1" as="geometry">
+            <mxPoint x="-8" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-mapping-bank-one" connectable="0" parent="rel-mapping-bank" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;fontStyle=1" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" y="2" as="geometry">
+            <mxPoint x="8" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
