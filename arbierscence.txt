@@ -1,0 +1,14 @@
+banking-system/
+├── src/main/java/com/banking/admin/
+│   ├── BankingAdministrationApplication.java  // Main class
+│   ├── entity/          // Database tables (JPA entities)
+│   ├── repository/      // Database access (JPA repositories)
+│   ├── service/         // Business logic
+│   ├── controller/      // REST APIs
+│   ├── dto/             // Data Transfer Objects
+│   ├── exception/       // Custom exceptions
+│   └── config/          // Configuration classes
+├── src/main/resources/
+│   ├── application.yml  // Configuration
+│   └── data.sql         // Sample data
+└── pom.xml              // Dependencies
