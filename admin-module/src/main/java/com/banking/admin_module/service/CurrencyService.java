@@ -1,13 +1,11 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.Currency;
+import com.banking.admin_module.model.entity.Currency;
 import com.banking.admin_module.repository.CurrencyRepository;
-import org.apache.tomcat.util.net.openssl.OpenSSLStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.apache.tomcat.util.net.openssl.OpenSSLStatus.setName;
 @Service
 public class CurrencyService {
 

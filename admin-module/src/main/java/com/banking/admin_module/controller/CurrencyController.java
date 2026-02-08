@@ -1,7 +1,6 @@
 package com.banking.admin_module.controller;
 
-import com.banking.admin_module.entity.Currency;
-import com.banking.admin_module.repository.CurrencyRepository;
+import com.banking.admin_module.model.entity.Currency;
 import com.banking.admin_module.service.CurrencyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

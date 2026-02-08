@@ -1,9 +1,8 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.Country;
+import com.banking.admin_module.model.entity.Country;
 import com.banking.admin_module.repository.CountryRepository;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 @Service

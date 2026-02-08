@@ -1,6 +1,6 @@
 package com.banking.admin_module.controller;
 
-import com.banking.admin_module.entity.BGMapping;
+import com.banking.admin_module.model.entity.BGMapping;
 import com.banking.admin_module.service.BGMappingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

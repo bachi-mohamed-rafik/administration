@@ -1,7 +1,6 @@
 package com.banking.admin_module.controller;
 
-import com.banking.admin_module.entity.Country;
-import com.banking.admin_module.repository.CountryRepository;
+import com.banking.admin_module.model.entity.Country;
 import com.banking.admin_module.service.CountryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

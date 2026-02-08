@@ -1,4 +1,4 @@
-package com.banking.admin_module.entity;
+package com.banking.admin_module.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

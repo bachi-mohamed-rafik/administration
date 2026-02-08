@@ -1,4 +1,4 @@
-package com.banking.admin_module.enums;
+package com.banking.admin_module.model.enums;
 
 public enum isMainBranch {
     Yes,

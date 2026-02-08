@@ -1,7 +1,7 @@
 package com.banking.admin_module.service;
-import com.banking.admin_module.entity.BfsiGroup;
+import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BankRepository;
-import com.banking.admin_module.entity.Bank;
+import com.banking.admin_module.model.entity.Bank;
 import com.banking.admin_module.repository.BfsiRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

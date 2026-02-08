@@ -1,14 +1,12 @@
-package com.banking.admin_module.entity;
+package com.banking.admin_module.model.entity;
 
-import com.banking.admin_module.enums.Status;
+import com.banking.admin_module.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter

@@ -1,6 +1,6 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.AppUser;
+import com.banking.admin_module.model.entity.AppUser;
 import com.banking.admin_module.repository.AppUserRepository;
 import org.springframework.stereotype.Service;
 

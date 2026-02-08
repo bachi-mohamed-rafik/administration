@@ -1,11 +1,10 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.Branch;
+import com.banking.admin_module.model.entity.Branch;
 import com.banking.admin_module.repository.BranchRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BranchService {

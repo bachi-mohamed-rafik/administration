@@ -1,12 +1,11 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.BfsiGroup;
+import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BankRepository;
 import com.banking.admin_module.repository.BfsiRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BfsiGroupService {

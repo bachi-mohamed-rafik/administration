@@ -1,4 +1,4 @@
-package com.banking.admin_module.entity;
+package com.banking.admin_module.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "user_groups")

@@ -1,6 +1,6 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.BGroup;
+import com.banking.admin_module.model.entity.BGroup;
 import com.banking.admin_module.repository.BGroupRepository;
 import org.springframework.stereotype.Service;
 

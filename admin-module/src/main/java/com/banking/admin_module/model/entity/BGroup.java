@@ -1,4 +1,4 @@
-package com.banking.admin_module.entity;
+package com.banking.admin_module.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

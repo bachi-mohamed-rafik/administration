@@ -1,9 +1,9 @@
-package com.banking.admin_module.entity;
+package com.banking.admin_module.model.entity;
 
-import com.banking.admin_module.enums.Status;
+import com.banking.admin_module.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
-import  com.banking.admin_module.enums.isMainBranch;
+import com.banking.admin_module.model.enums.isMainBranch;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.banking.admin_module.service;
 
-import com.banking.admin_module.entity.BGMapping;
+import com.banking.admin_module.model.entity.BGMapping;
 import com.banking.admin_module.repository.BGMappingRepository;
 import org.springframework.stereotype.Service;
 

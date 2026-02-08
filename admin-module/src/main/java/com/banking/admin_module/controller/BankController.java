@@ -1,6 +1,6 @@
 package com.banking.admin_module.controller;
 
-import com.banking.admin_module.entity.Bank;
+import com.banking.admin_module.model.entity.Bank;
 import com.banking.admin_module.service.BankService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

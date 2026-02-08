@@ -1,6 +1,6 @@
 package com.banking.admin_module.repository;
 
-import com.banking.admin_module.entity.ReportingGroup;
+import com.banking.admin_module.model.entity.ReportingGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

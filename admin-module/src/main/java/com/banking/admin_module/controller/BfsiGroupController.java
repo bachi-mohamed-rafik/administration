@@ -1,6 +1,6 @@
 package com.banking.admin_module.controller;
 
-import com.banking.admin_module.entity.BfsiGroup;
+import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BfsiRepository;
 import com.banking.admin_module.service.BfsiGroupService;
 import org.springframework.http.HttpStatus;
