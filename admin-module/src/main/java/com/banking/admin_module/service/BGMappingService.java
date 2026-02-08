@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.BGMapping;
 import com.banking.admin_module.repository.BGMappingRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BGMappingService {
 
     private final BGMappingRepository bgMappingRepository;
-
-    public BGMappingService(BGMappingRepository bgMappingRepository) {
-        this.bgMappingRepository = bgMappingRepository;
-    }
 
     // Get all mappings
     public List<BGMapping> getAllMappings() {

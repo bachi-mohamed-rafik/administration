@@ -2,6 +2,7 @@ package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.Country;
 import com.banking.admin_module.service.CountryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Country")
+@RequiredArgsConstructor
 public class CountryController {
     private final CountryService CountryService;
-
-    // Country controller
-    public CountryController(CountryService countryService) {
-        this.CountryService = countryService;
-    }
 
     //get all countries
     @GetMapping("/allCountries")

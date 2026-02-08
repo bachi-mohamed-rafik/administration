@@ -2,6 +2,7 @@ package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.BGroup;
 import com.banking.admin_module.service.BGroupService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/business-groups")
+@RequiredArgsConstructor
 public class BGroupController {
 
     private final BGroupService bGroupService;
-
-    public BGroupController(BGroupService bGroupService) {
-        this.bGroupService = bGroupService;
-    }
 
     // Get all business groups
     @GetMapping

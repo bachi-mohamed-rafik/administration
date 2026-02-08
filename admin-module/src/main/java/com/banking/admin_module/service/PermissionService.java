@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.Permission;
 import com.banking.admin_module.repository.PermissionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PermissionService {
 
     private final PermissionRepository permissionRepository;
-
-    public PermissionService(PermissionRepository permissionRepository) {
-        this.permissionRepository = permissionRepository;
-    }
 
     public List<Permission> getAllPermissions() {
         return permissionRepository.findAll();

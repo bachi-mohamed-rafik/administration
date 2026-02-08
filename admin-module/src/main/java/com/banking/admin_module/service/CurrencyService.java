@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.Currency;
 import com.banking.admin_module.repository.CurrencyRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CurrencyService {
 
     private final CurrencyRepository currencyRepository;
-    //Constructor Injection
-    public CurrencyService(CurrencyRepository currencyRepository){
-        this.currencyRepository = currencyRepository;
-    }
 
     // get all currencies
     public List<Currency> getAllCurrencies(){

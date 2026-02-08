@@ -2,19 +2,17 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.AppUser;
 import com.banking.admin_module.repository.AppUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class AppUserService {
 
     private final AppUserRepository appUserRepository;
-
-    public AppUserService(AppUserRepository appUserRepository) {
-        this.appUserRepository = appUserRepository;
-    }
 
     public List<AppUser> getAllUsers() {
         return appUserRepository.findAll();

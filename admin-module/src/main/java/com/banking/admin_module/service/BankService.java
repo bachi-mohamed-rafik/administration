@@ -3,24 +3,18 @@ import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BankRepository;
 import com.banking.admin_module.model.entity.Bank;
 import com.banking.admin_module.repository.BfsiRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BankService {
 
     private final BankRepository bankRepository;
     private final BfsiRepository bfsiRepository;
-
-    //constructor injection
-    public BankService(BankRepository bankRepository,
-                       BfsiRepository bfsiRepository){
-
-        this.bankRepository = bankRepository;
-        this.bfsiRepository = bfsiRepository;
-    }
 
     public List<Bank> getAllBanks(){
         return bankRepository.findAll();

@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.BGroup;
 import com.banking.admin_module.repository.BGroupRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BGroupService {
 
     private final BGroupRepository bGroupRepository;
-
-    public BGroupService(BGroupRepository bGroupRepository) {
-        this.bGroupRepository = bGroupRepository;
-    }
 
     // Get all business groups
     public List<BGroup> getAllBGroups() {

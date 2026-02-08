@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.Branch;
 import com.banking.admin_module.repository.BranchRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BranchService {
 
     private final BranchRepository branchRepository;
-    //Constructor injection
-    public BranchService(BranchRepository branchRepository){
-        this.branchRepository= branchRepository;
-    }
 
     // get all branches
     public List<Branch> getAllBranches(){

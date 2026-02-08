@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.Group;
 import com.banking.admin_module.repository.GroupRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class GroupService {
 
     private final GroupRepository groupRepository;
-
-    public GroupService(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
-    }
 
     public List<Group> getAllGroups() {
         return groupRepository.findAll();

@@ -3,21 +3,17 @@ package com.banking.admin_module.service;
 import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BankRepository;
 import com.banking.admin_module.repository.BfsiRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BfsiGroupService {
 
     private final BfsiRepository bfsiRepository;
     private final BankRepository bankRepository;
-
-    //Constructor injection
-    public BfsiGroupService(BfsiRepository bfsiRepository, BankRepository bankRepository){
-        this.bfsiRepository= bfsiRepository;
-        this.bankRepository = bankRepository;
-    }
 
     // get all bfsiGroup
     public List<BfsiGroup> getAllBfsiGroups(){

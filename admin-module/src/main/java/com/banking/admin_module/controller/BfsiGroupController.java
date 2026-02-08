@@ -3,6 +3,7 @@ package com.banking.admin_module.controller;
 import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BfsiRepository;
 import com.banking.admin_module.service.BfsiGroupService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bfsiGroup")
+@RequiredArgsConstructor
 public class BfsiGroupController {
     private final BfsiRepository bfsiRepository;
     private BfsiGroupService bfsiGroupService;
-
-    // bfsiGroupController constructor
-    public BfsiGroupController(BfsiGroupService bfsiGroupService, BfsiRepository bfsiRepository) {
-        this.bfsiGroupService = bfsiGroupService;
-        this.bfsiRepository = bfsiRepository;
-    }
 
     // get all bfsgroups
     @GetMapping("/allBfsiGroups")

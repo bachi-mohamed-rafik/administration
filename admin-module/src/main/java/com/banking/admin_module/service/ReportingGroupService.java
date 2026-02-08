@@ -2,18 +2,16 @@ package com.banking.admin_module.service;
 
 import com.banking.admin_module.model.entity.ReportingGroup;
 import com.banking.admin_module.repository.ReportingGroupRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ReportingGroupService {
 
     private final ReportingGroupRepository reportingGroupRepository;
-
-    public ReportingGroupService(ReportingGroupRepository reportingGroupRepository) {
-        this.reportingGroupRepository = reportingGroupRepository;
-    }
 
     public List<ReportingGroup> getAllReportingGroups() {
         return reportingGroupRepository.findAll();
