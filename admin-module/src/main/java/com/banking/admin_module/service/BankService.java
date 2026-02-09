@@ -4,6 +4,7 @@ import com.banking.admin_module.repository.BankRepository;
 import com.banking.admin_module.model.entity.Bank;
 import com.banking.admin_module.repository.BfsiRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BankService {
 
     private final BankRepository bankRepository;
@@ -21,14 +23,15 @@ public class BankService {
     }
 
     public Bank getBankById(Long id){
+        log.info("Fetching bank with ID: {}", id);
         return   bankRepository.findBankById(id);
-        //bankRepository.findBankById(id);
     }
 
     public Bank createBank(Bank bank, Long bfsiGroupId){
         BfsiGroup bfsiGroup = bfsiRepository.findById(bfsiGroupId)
                 .orElseThrow(() ->new RuntimeException("not exising in bfsi"));
         bank.setBfsiGroup(bfsiGroup);
+        log.info("Creating bank: {}", bank.getName());
         return bankRepository.save(bank);
     }
 
@@ -36,8 +39,6 @@ public class BankService {
     public Bank updateBank(Long id, Bank updatedBank) {
         return bankRepository.findById(id).map(existingBank -> {
 
-            // Use Optional.ofNullable for cleaner checks if you prefer,
-            // or stay with your current if-checks:
             if (updatedBank.getName() != null) existingBank.setName(updatedBank.getName());
             if (updatedBank.getCode() != null) existingBank.setCode(updatedBank.getCode());
             if (updatedBank.getDescription() != null) existingBank.setDescription(updatedBank.getDescription());
@@ -45,7 +46,6 @@ public class BankService {
             if (updatedBank.getCurrencyId() != null) existingBank.setCurrencyId(updatedBank.getCurrencyId());
             if (updatedBank.getStatus() != null) existingBank.setStatus(updatedBank.getStatus());
 
-            // Handle Group update carefully
             if (updatedBank.getBfsiGroup() != null) {
                 existingBank.setBfsiGroup(updatedBank.getBfsiGroup());
             }
@@ -53,10 +53,12 @@ public class BankService {
             return bankRepository.save(existingBank);
         }).orElseThrow(() -> new RuntimeException("Bank with ID " + id + " not found"));
     }
+
     public void deleteBank(Long id){
         if (!bankRepository.existsById(id)){
             throw new RuntimeException("id dont exist");
         }
+        log.info("Deleting bank with ID: {}", id);
         bankRepository.deleteById(id);
     }
 

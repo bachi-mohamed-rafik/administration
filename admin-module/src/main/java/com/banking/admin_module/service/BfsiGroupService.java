@@ -4,12 +4,14 @@ import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BankRepository;
 import com.banking.admin_module.repository.BfsiRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BfsiGroupService {
 
     private final BfsiRepository bfsiRepository;
@@ -17,6 +19,7 @@ public class BfsiGroupService {
 
     // get all bfsiGroup
     public List<BfsiGroup> getAllBfsiGroups(){
+        log.info("Fetching all BFSI groups");
         return bfsiRepository.findAll();
     }
 
@@ -28,6 +31,7 @@ public class BfsiGroupService {
 
     // create bank
     public BfsiGroup createBfsiGroup( BfsiGroup bfsiGroup){
+        log.info(" Creating new BFSI group with name: {}", bfsiGroup.getName());
         return bfsiRepository.save(bfsiGroup);
     }
 
@@ -46,6 +50,7 @@ public class BfsiGroupService {
         if (updatedBfsiGroup.getDescription()!= null){
             existingBfsiGroup.setDescription(updatedBfsiGroup.getDescription());
         }
+        log.info("Updating BFSI group with id: {}", id);
         return bfsiRepository.save(existingBfsiGroup) ;
     }
 
