@@ -3,6 +3,7 @@ package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.Branch;
 import com.banking.admin_module.service.BranchService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,10 @@ public class BranchController {
 
     //get all branches
     @GetMapping("/allBranches")
+    @Operation(
+            summary = "Get all branches",
+            description = "Retrieve a list of all branches"
+    )
     public ResponseEntity<List<Branch>> getAllBranches(){
         List<Branch> branches= branchService.getAllBranches();
 
@@ -34,6 +39,10 @@ public class BranchController {
 
     //read branch by id
     @GetMapping("/{id}")
+    @Operation(
+            summary = "Get branch by ID",
+            description = "Retrieve a branch by its unique ID"
+    )
     public ResponseEntity<Branch> getBankById(@PathVariable Long id){
         if (branchService.getAllBranches().isEmpty()){
             ResponseEntity.noContent().build();
@@ -44,6 +53,10 @@ public class BranchController {
 
     // create a branch
     @PostMapping
+    @Operation(
+            summary = "Create a new branch",
+            description = "Create a new branch with the provided details"
+    )
     public ResponseEntity<Branch> createBranch(@RequestBody Branch newBranch){
         Branch savedBranch  = branchService.createBranch(newBranch);
         return new ResponseEntity<>(savedBranch, HttpStatus.CREATED);
@@ -51,6 +64,10 @@ public class BranchController {
 
     //update a branch
     @PutMapping("/{id}")
+    @Operation(
+            summary = "Update an existing branch",
+            description = "Update the details of an existing branch by its ID"
+    )
     public ResponseEntity<Branch> updateBranch(@PathVariable Long id, @RequestBody Branch branchDetails){
         Branch savedBranch = branchService.updateBranch(id, branchDetails);
         return  new ResponseEntity<>(savedBranch, HttpStatus.OK);
@@ -58,6 +75,10 @@ public class BranchController {
 
     // delete a branch
     @DeleteMapping("/{id}")
+    @Operation(
+            summary = "Delete a branch",
+            description = "Delete an existing branch by its ID"
+    )
     public ResponseEntity<Void> deleteBranch(@PathVariable Long id){
         branchService.deleteBranch(id);
         return ResponseEntity.noContent().build();
