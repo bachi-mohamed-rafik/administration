@@ -3,6 +3,7 @@ package com.banking.admin_module.controller;
 import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BfsiRepository;
 import com.banking.admin_module.service.BfsiGroupService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.banking.admin_module.utils.constants.APP_ROOT;
+
 @RestController
-@RequestMapping("/api/bfsiGroup")
+@RequestMapping(APP_ROOT+"/bfsiGroup")
 @RequiredArgsConstructor
+@Tag(name = "Bfsi Group Management", description = "Operations for managing application bfsi group")
 public class BfsiGroupController {
     private final BfsiRepository bfsiRepository;
     private BfsiGroupService bfsiGroupService;

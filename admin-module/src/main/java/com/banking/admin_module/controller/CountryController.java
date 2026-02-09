@@ -2,6 +2,7 @@ package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.Country;
 import com.banking.admin_module.service.CountryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.banking.admin_module.utils.constants.APP_ROOT;
+
 @RestController
-@RequestMapping("/api/Country")
+@RequestMapping(APP_ROOT+"/Country")
 @RequiredArgsConstructor
+@Tag(name = "Countries", description = "Operations for managing application countries")
 public class CountryController {
     private final CountryService CountryService;
 

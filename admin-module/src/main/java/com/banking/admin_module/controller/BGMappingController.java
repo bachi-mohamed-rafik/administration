@@ -2,6 +2,7 @@ package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.BGMapping;
 import com.banking.admin_module.service.BGMappingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.banking.admin_module.utils.constants.APP_ROOT;
+
 @RestController
-@RequestMapping("/api/bg-mappings")
+@RequestMapping(APP_ROOT+"/bg-mappings")
 @RequiredArgsConstructor
+@Tag(name = "Business Group Mapping Management", description = "Operations for managing Business Group Mappings")
 public class BGMappingController {
 
     private final BGMappingService bgMappingService;
