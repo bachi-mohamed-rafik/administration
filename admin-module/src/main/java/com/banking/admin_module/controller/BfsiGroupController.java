@@ -1,5 +1,6 @@
 package com.banking.admin_module.controller;
 
+import com.banking.admin_module.model.dto.BfsiGroup.response.BfsiGroupResponse;
 import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BfsiRepository;
 import com.banking.admin_module.service.BfsiGroupService;
@@ -20,7 +21,7 @@ import static com.banking.admin_module.utils.constants.APP_ROOT;
 @Tag(name = "Bfsi Group Management", description = "Operations for managing application bfsi group")
 public class BfsiGroupController {
     private final BfsiRepository bfsiRepository;
-    private BfsiGroupService bfsiGroupService;
+    private final BfsiGroupService bfsiGroupService;
 
     // get all bfsgroups
     @Operation(
@@ -29,11 +30,10 @@ public class BfsiGroupController {
             tags = {"BFSI Group Management"}
     )
     @GetMapping("/allBfsiGroups")
-    public ResponseEntity<List<BfsiGroup>> getAllBfsigroups() {
-        List<BfsiGroup> bfsigroups = bfsiGroupService.getAllBfsiGroups();
-
+    public ResponseEntity<List<BfsiGroupResponse>> getAllBfsigroups() {
+        List<BfsiGroupResponse> bfsigroups = bfsiGroupService.getAllBfsiGroups();
         if (bfsigroups.isEmpty()) {
-            ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(bfsigroups);
     }

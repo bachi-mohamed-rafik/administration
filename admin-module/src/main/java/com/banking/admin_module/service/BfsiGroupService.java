@@ -1,13 +1,15 @@
 package com.banking.admin_module.service;
 
+import com.banking.admin_module.model.dto.BfsiGroup.response.BfsiGroupResponse;
 import com.banking.admin_module.model.entity.BfsiGroup;
-import com.banking.admin_module.repository.BankRepository;
 import com.banking.admin_module.repository.BfsiRepository;
+import com.banking.admin_module.mapper.BfsiGroupMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -15,12 +17,15 @@ import java.util.List;
 public class BfsiGroupService {
 
     private final BfsiRepository bfsiRepository;
-    private final BankRepository bankRepository;
+    private final BfsiGroupMapper mapper;
 
     // get all bfsiGroup
-    public List<BfsiGroup> getAllBfsiGroups(){
+    public List<BfsiGroupResponse> getAllBfsiGroups(){
         log.info("Fetching all BFSI groups");
-        return bfsiRepository.findAll();
+        return bfsiRepository.findAllWithBanks()
+                .stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
     }
 
     // get bfsiGroup by id
