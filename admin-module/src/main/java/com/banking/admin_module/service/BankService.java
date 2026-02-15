@@ -19,81 +19,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@RequiredArgsConstructor
-@Slf4j
-public class BankService {
+public interface BankService {
 
-    private final BankRepository bankRepository;
-    private final BfsiRepository bfsiRepository;
-    private final CountryRepository countryRepository;
-    private final CurrencyRepository currencyRepository;
-    private final BankMapper mapper;
+    public List<BankResponse> getAllBanks();
 
-    public List<BankResponse> getAllBanks(){
-        log.info("Fetching all banks");
-        return bankRepository.findAll()
-                .stream()
-                .map(mapper::toResponse)
-                .collect(Collectors.toList());
-    }
-
-    public BankResponse getBankById(Long id){
-        log.info("Fetching bank with ID: {}", id);
-        Bank bank = bankRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bank with ID " + id + " not found"));
-        return   mapper.toResponse(bank);
-    }
+    public BankResponse getBankById(Long id);
 
     // create bank
-    public BankResponse createBank(CreateBankRequest request){
-        log.info("Creating bank with name: {}", request.name());
-        Bank bank = mapper.toEntity(request);
-        BfsiGroup bfsiGroup = bfsiRepository.findById(request.bfsiGroupId())
-                .orElseThrow(() ->{
-                    return new RuntimeException("not exising in bfsi");
-                });
-        bank.setBfsiGroup(bfsiGroup);
-        //set country
-        Country country = countryRepository.findById(request.countryId())
-                .orElseThrow(() -> new RuntimeException("Country with ID " + request.countryId() + " not found"));
-        bank.setCountry(country);
-        // set Currency
-        Currency currency = currencyRepository.findById(request.currencyId())
-                .orElseThrow(() -> new RuntimeException("Currency for Country ID " + request.countryId() + " not found"));
-        bank.setCurrency(currency);
-        Bank saved= bankRepository.save(bank);
-        log.info("Creating bank: {}", bank.getName());
-        return mapper.toResponse(saved);
-    }
+    public BankResponse createBank(CreateBankRequest request);
 
     @Transactional
-    public BankResponse updateBank(Long id, UpdateBankRequest updatedBank) {
-        log.info("updating bank with ID:{}", id);
-        return bankRepository.findById(id).map(existingBank -> {
+    public BankResponse updateBank(Long id, UpdateBankRequest updatedBank);
 
-            if (updatedBank.name() != null) existingBank.setName(updatedBank.name());
-            if (updatedBank.code() != null) existingBank.setCode(updatedBank.code());
-            if (updatedBank.description() != null) existingBank.setDescription(updatedBank.description());
-            if (updatedBank.country() != null) existingBank.setCountry(updatedBank.country());
-            if (updatedBank.currency() != null) existingBank.setCurrency(updatedBank.currency());
-            if (updatedBank.status() != null) existingBank.setStatus(updatedBank.status());
+    public void deleteBank(Long id);
 
-            if (updatedBank.bfsiGroup() != null) {
-                existingBank.setBfsiGroup(updatedBank.bfsiGroup());
-            }
-
-            Bank savedBank = bankRepository.save(existingBank);
-            return mapper.toResponse(savedBank);
-        }).orElseThrow(() -> new RuntimeException("Bank with ID " + id + " not found"));
-    }
-
-    public void deleteBank(Long id){
-        if (!bankRepository.existsById(id)){
-            throw new RuntimeException("id dont exist");
-        }
-        log.info("Deleting bank with ID: {}", id);
-        bankRepository.deleteById(id);
-    }
 
 }

@@ -18,6 +18,7 @@ public record CreateBankRequest(
         @Schema(description = "Le code de la banque", example = "BNA")
         String code,
 
+        @NotNull(message = "La description est obligatoire")
         @Schema(description = "La description de la banque", example = "123 Rue de la Banque, Alger")
         String description,
 

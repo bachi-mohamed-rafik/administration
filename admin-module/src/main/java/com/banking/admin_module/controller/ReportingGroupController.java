@@ -1,5 +1,6 @@
 package com.banking.admin_module.controller;
 
+import com.banking.admin_module.model.dto.ReportingGroup.response.ReportingGroupResponse;
 import com.banking.admin_module.model.entity.ReportingGroup;
 import com.banking.admin_module.service.ReportingGroupService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +28,11 @@ public class ReportingGroupController {
             description = "Retrieve a list of all reporting groups in the system.",
             tags = {"Reporting Group Management"}
     )
-    public ResponseEntity<List<ReportingGroup>> getAllReportingGroups() {
+    public ResponseEntity<List<ReportingGroupResponse>> getAllReportingGroups() {
+        List<ReportingGroupResponse> reportingGroupResponses = reportingGroupService.getAllReportingGroups();
+        if (reportingGroupResponses.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(reportingGroupService.getAllReportingGroups());
     }
 

@@ -1,5 +1,6 @@
 package com.banking.admin_module.controller;
 
+import com.banking.admin_module.model.dto.BGroup.response.BGroupResponse;
 import com.banking.admin_module.model.entity.BGroup;
 import com.banking.admin_module.service.BGroupService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,8 +29,11 @@ public class BGroupController {
             description = "Retrieve a list of all business groups in the system",
             tags = {"Business Group Management"}
     )
-    public ResponseEntity<List<BGroup>> getAllBGroups() {
-        List<BGroup> bGroups = bGroupService.getAllBGroups();
+    public ResponseEntity<List<BGroupResponse>> getAllBGroups() {
+        List<BGroupResponse> bGroups = bGroupService.getAllBGroups();
+        if (bGroups.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(bGroups);
     }
 
@@ -41,8 +45,11 @@ public class BGroupController {
             tags = {"Business Group Management"}
     )
     public ResponseEntity<BGroup> getBGroupById(@PathVariable String id) {
-        BGroup bGroup = bGroupService.getBGroupById(id);
-        return ResponseEntity.ok(bGroup);
+        BGroup foundBGroup = bGroupService.getBGroupById(id);
+        if (foundBGroup != null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(foundBGroup);
     }
 
     // Get business group by code
