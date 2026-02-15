@@ -1,7 +1,10 @@
 package com.banking.admin_module.controller;
 
+import com.banking.admin_module.model.dto.Currency.request.CreateCurrencyRequest;
+import com.banking.admin_module.model.dto.Currency.request.UpdateCurrencyRequest;
+import com.banking.admin_module.model.dto.Currency.response.CurrencyResponse;
 import com.banking.admin_module.model.entity.Currency;
-import com.banking.admin_module.service.CurrencyService;
+import com.banking.admin_module.service.Impl.CurrencyServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +17,11 @@ import java.util.List;
 import static com.banking.admin_module.utils.constants.APP_ROOT;
 
 @RestController
-@RequestMapping(APP_ROOT+"/currency")
+@RequestMapping(APP_ROOT+"/Currency")
 @RequiredArgsConstructor
 @Tag(name = "Currencies Management", description = "Operations for managing application currencies")
 public class CurrencyController {
-    private final CurrencyService currencyService;
+    private final CurrencyServiceImpl currencyService;
 
     //get all currnecies
     @GetMapping("/allCurrencies")
@@ -27,9 +30,8 @@ public class CurrencyController {
             description = "Retrieve a list of all currencies available in the application.",
             tags = {"Currencies Management"}
     )
-    public ResponseEntity<List<Currency>> getAllCurrencies(){
-        List<Currency> currencies= currencyService.getAllCurrencies();
-        return ResponseEntity.ok(currencies);
+    public ResponseEntity<List<CurrencyResponse>> getAllCurrencies(){
+        return ResponseEntity.ok(currencyService.getAllCurrencies());
     }
 
     //get Cuurency By id
@@ -39,12 +41,8 @@ public class CurrencyController {
             description = "Retrieve a specific currency by its unique identifier.",
             tags = {"Currencies Management"}
     )
-    public ResponseEntity<Currency> getCurrencyById(@PathVariable Long id) {
-        Currency currency = currencyService.getCurrencyById(id);
-        if (currency == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(currency);
+    public ResponseEntity<CurrencyResponse> getCurrencyById(@PathVariable Long id) {
+        return ResponseEntity.ok(currencyService.getCurrencyById(id));
     }
     // create currency
     @PostMapping
@@ -53,9 +51,10 @@ public class CurrencyController {
             description = "Add a new currency to the application.",
             tags = {"Currencies Management"}
     )
-    public ResponseEntity<Currency> createCurrency(@RequestBody Currency newCurrency){
-        Currency savedCurrency = currencyService.createCurrency(newCurrency);
-        return new ResponseEntity<>(savedCurrency, HttpStatus.CREATED);
+    public ResponseEntity<CurrencyResponse> createCurrency(
+            @RequestBody CreateCurrencyRequest request){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(currencyService.createCurrency(request));
     }
 
     //update currency
@@ -65,9 +64,8 @@ public class CurrencyController {
             description = "Modify the details of an existing currency identified by its ID.",
             tags = {"Currencies Management"}
     )
-    public ResponseEntity<Currency> updateCurrency(@PathVariable Long id, @RequestBody Currency currencyDetails){
-        Currency updatedCurrency = currencyService.updateCurrency(id, currencyDetails);
-        return new ResponseEntity<>(updatedCurrency, HttpStatus.OK);
+    public ResponseEntity<Currency> updateCurrency(@PathVariable Long id, @RequestBody UpdateCurrencyRequest request){
+        return ResponseEntity.ok(currencyService.updateCurrency(id, request));
     }
 
     //delete Currency

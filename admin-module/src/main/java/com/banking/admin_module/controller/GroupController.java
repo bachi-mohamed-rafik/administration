@@ -1,7 +1,7 @@
 package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.Group;
-import com.banking.admin_module.service.GroupService;
+import com.banking.admin_module.service.Impl.GroupServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import static com.banking.admin_module.utils.constants.APP_ROOT;
 @Tag(name = "Group Management", description = "Operations for managing groups.")
 public class GroupController {
 
-    private final GroupService groupService;
+    private final GroupServiceImpl groupService;
 
     @GetMapping
     @Operation(

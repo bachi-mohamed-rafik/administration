@@ -32,11 +32,11 @@ public class Bank {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
-    private Currency currencyId; //FK currency
+    private Currency currency; //FK currency
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
-    private Country countryId; //FK currency
+    private Country country; //FK currency
 
     @Column(nullable = false, unique = false)
     private Boolean nettingAllowedFlag;

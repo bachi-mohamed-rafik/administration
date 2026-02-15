@@ -11,60 +11,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@RequiredArgsConstructor
-@Slf4j
-public class BfsiGroupService {
 
-    private final BfsiRepository bfsiRepository;
-    private final BfsiGroupMapper mapper;
+public interface BfsiGroupService {
 
-    // get all bfsiGroup
-    public List<BfsiGroupResponse> getAllBfsiGroups(){
-        log.info("Fetching all BFSI groups");
-        return bfsiRepository.findAllWithBanks()
-                .stream()
-                .map(mapper::toResponse)
-                .collect(Collectors.toList());
-    }
+    // get all bfsiGroupId
+     List<BfsiGroupResponse> getAllBfsiGroups();
 
-    // get bfsiGroup by id
-    public BfsiGroup getBfsiGroupById(Long id){
-        return bfsiRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("id not found"));
-    }
+    // get bfsiGroupId by id
+    public BfsiGroup getBfsiGroupById(Long id);
 
-    // create bank
-    public BfsiGroup createBfsiGroup( BfsiGroup bfsiGroup){
-        log.info(" Creating new BFSI group with name: {}", bfsiGroup.getName());
-        return bfsiRepository.save(bfsiGroup);
-    }
+    // create bfsi group
+    public BfsiGroup createBfsiGroup( BfsiGroup bfsiGroup);
 
-    //update bfsiGroup
-    public BfsiGroup updateBfsiGroup(Long id, BfsiGroup updatedBfsiGroup){
-
-        BfsiGroup existingBfsiGroup = bfsiRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("this bfsi dont exists!"));
-
-        // modify if there is a modification in name
-        if (updatedBfsiGroup.getName() != null){
-            existingBfsiGroup.setName(updatedBfsiGroup.getName());
-        }
-
-        // modify if there is a description
-        if (updatedBfsiGroup.getDescription()!= null){
-            existingBfsiGroup.setDescription(updatedBfsiGroup.getDescription());
-        }
-        log.info("Updating BFSI group with id: {}", id);
-        return bfsiRepository.save(existingBfsiGroup) ;
-    }
+    //update bfsiGroupId
+    public BfsiGroup updateBfsiGroup(Long id, BfsiGroup updatedBfsiGroup);
 
     // delete bfsi Group
-    public void deleteBfsiGroup(Long id){
-        if (!bfsiRepository.existsById(id)){
-            throw new RuntimeException("this bfsi dont exixts");
-        }
-        bfsiRepository.deleteById(id);
-    }
+    public void deleteBfsiGroup(Long id);
 
 }

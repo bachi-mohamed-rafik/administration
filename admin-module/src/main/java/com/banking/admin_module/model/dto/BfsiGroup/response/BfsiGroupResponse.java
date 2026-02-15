@@ -4,10 +4,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Response DTO pour les opérations liées au groupe BFSI")
 public record BfsiGroupResponse(
-
+/*
         @Schema(description = "ID du groupe BFSI", example = "1")
         Long id,
-
+*/
         @Schema(description = "Nom du groupe BFSI", example = "Groupe A")
         String name,
 

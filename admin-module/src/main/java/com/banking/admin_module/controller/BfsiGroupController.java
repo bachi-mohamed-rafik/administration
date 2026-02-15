@@ -16,7 +16,7 @@ import java.util.List;
 import static com.banking.admin_module.utils.constants.APP_ROOT;
 
 @RestController
-@RequestMapping(APP_ROOT+"/bfsiGroup")
+@RequestMapping(APP_ROOT+"/bfsiGroupApi")
 @RequiredArgsConstructor
 @Tag(name = "Bfsi Group Management", description = "Operations for managing application bfsi group")
 public class BfsiGroupController {
@@ -38,7 +38,7 @@ public class BfsiGroupController {
         return ResponseEntity.ok(bfsigroups);
     }
 
-    // get one bfsiGroup by id
+    // get one bfsiGroupId by id
     @GetMapping("/{id}")
     @Operation(
             summary = "Get BFSI Group by ID",
@@ -53,7 +53,7 @@ public class BfsiGroupController {
         return ResponseEntity.ok(foundBfsiGroup);
     }
 
-    // create bfsiGroup
+    // create bfsiGroupId
     @PostMapping
     @Operation(
             summary = "Create a new BFSI Group",
@@ -77,7 +77,7 @@ public class BfsiGroupController {
         return  new ResponseEntity<>(updatedBfsiGroup, HttpStatus.OK);
     }
 
-    // delete a bfsiGroup
+    // delete a bfsiGroupId
     @DeleteMapping("/{id}")
     @Operation(
             summary = "Delete a BFSI Group",

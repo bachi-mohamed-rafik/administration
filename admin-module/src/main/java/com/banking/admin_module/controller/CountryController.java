@@ -1,6 +1,8 @@
 package com.banking.admin_module.controller;
 
-import com.banking.admin_module.model.entity.Country;
+import com.banking.admin_module.model.dto.Country.request.CreateCountryRequest;
+import com.banking.admin_module.model.dto.Country.request.UpdateCountryRequest;
+import com.banking.admin_module.model.dto.Country.response.CountryResponse;
 import com.banking.admin_module.service.CountryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,7 +20,7 @@ import static com.banking.admin_module.utils.constants.APP_ROOT;
 @RequiredArgsConstructor
 @Tag(name = "Countries", description = "Operations for managing application countries")
 public class CountryController {
-    private final CountryService CountryService;
+    private final CountryService countryService;
 
     //get all countries
     @GetMapping("/allCountries")
@@ -27,9 +29,8 @@ public class CountryController {
             description = "Retrieve a list of all Countries in the system.",
             tags = {"Countries"}
     )
-    public ResponseEntity<List<Country>> getAllCountries(){
-        List<Country> Countries= CountryService.getAllCountries();
-        return ResponseEntity.ok(Countries);
+    public ResponseEntity<List<CountryResponse>> getAllCountries(){
+        return ResponseEntity.ok(countryService.getAllCountries());
     }
 
     //get country By id
@@ -39,12 +40,8 @@ public class CountryController {
             description = "Retrieve a specific Country by its unique ID.",
             tags = {"Countries"}
     )
-    public ResponseEntity<Country> getCountryById(@PathVariable Long id) {
-        Country Country = CountryService.getCountryById(id);
-        if (Country == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(Country);
+    public ResponseEntity<CountryResponse> getCountryById(@PathVariable Long id) {
+        return ResponseEntity.ok(countryService.getCountryById(id));
     }
     // create Country
     @PostMapping
@@ -53,9 +50,10 @@ public class CountryController {
             description = "Add a new Country to the system.",
             tags = {"Countries"}
     )
-    public ResponseEntity<Country> createCountry(@RequestBody Country newCountry){
-        Country savedCountry = CountryService.createCountry(newCountry);
-        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
+    public ResponseEntity<CountryResponse> createCountry(
+            @RequestBody CreateCountryRequest request){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(countryService.createCountry(request));
     }
 
     //update Country
@@ -65,9 +63,8 @@ public class CountryController {
             description = "Modify the details of an existing Country identified by its ID.",
             tags = {"Countries"}
     )
-    public ResponseEntity<Country> updateCountry(@PathVariable Long id, @RequestBody Country CountryDetails){
-        Country updatedCountry = CountryService.updateCountry(id, CountryDetails);
-        return new ResponseEntity<>(updatedCountry, HttpStatus.OK);
+    public ResponseEntity<CountryResponse> updateCountry(@PathVariable Long id, @RequestBody UpdateCountryRequest request){
+        return ResponseEntity.ok(countryService.updateCountry(id, request));
     }
 
     //delete Country

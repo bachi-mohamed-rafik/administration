@@ -14,9 +14,7 @@ public interface BfsiGroupMapper {
     @Mapping(target = "bankCount", expression = "java(bfsiGroup.getBanks() != null ? bfsiGroup.getBanks().size() : 0)")
     BfsiGroupResponse toResponse(BfsiGroup bfsiGroup);
 
-    @Mapping(target = "id", ignore = true)
     BfsiGroup toEntity(CreateBfsiGroupRequest request);
 
-    @Mapping(target = "id", ignore = true)
     void updateEntity(UpdateBfsiGroupRequest request, @MappingTarget BfsiGroup bfsiGroup);
 }

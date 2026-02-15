@@ -23,7 +23,7 @@ public class Currency {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "currencyId", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "currency", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private Set<Bank> banks;
 

@@ -1,7 +1,7 @@
 package com.banking.admin_module.controller;
 
 import com.banking.admin_module.model.entity.Permission;
-import com.banking.admin_module.service.PermissionService;
+import com.banking.admin_module.service.Impl.PermissionServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import static com.banking.admin_module.utils.constants.APP_ROOT;
 @Tag(name = "Permission Management", description = "Operations for managing Permissions")
 public class PermissionController {
 
-    private final PermissionService permissionService;
+    private final PermissionServiceImpl permissionService;
 
     @GetMapping
     @Operation(

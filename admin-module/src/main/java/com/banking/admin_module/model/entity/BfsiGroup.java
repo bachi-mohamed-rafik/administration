@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="bfsiGroup")
+@Table(name="bfsiGroupId")
 public class BfsiGroup {
     @Id
     @GeneratedValue()

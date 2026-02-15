@@ -1,5 +1,6 @@
 package com.banking.admin_module.controller;
 
+import com.banking.admin_module.model.dto.UserGroup.response.UserGroupResponse;
 import com.banking.admin_module.model.entity.UserGroup;
 import com.banking.admin_module.service.UserGroupService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +28,11 @@ public class UserGroupController {
             description = "Retrieve a list of all user groups in the system.",
             tags = {"User Group Management"}
     )
-    public ResponseEntity<List<UserGroup>> getAllUserGroups() {
+    public ResponseEntity<List<UserGroupResponse>> getAllUserGroups() {
+        List<UserGroupResponse> userGroupResponses = userGroupService.getAllUserGroups();
+        if (userGroupResponses.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(userGroupService.getAllUserGroups());
     }
 
@@ -38,6 +43,10 @@ public class UserGroupController {
             tags = {"User Group Management"}
     )
     public ResponseEntity<UserGroup> getUserGroupById(@PathVariable String id) {
+        UserGroup foundUserGroup = userGroupService.getUserGroupById(id);
+        if (foundUserGroup == null) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(userGroupService.getUserGroupById(id));
     }
 
@@ -48,6 +57,10 @@ public class UserGroupController {
             tags = {"User Group Management"}
     )
     public ResponseEntity<List<UserGroup>> getUserGroupsByUserId(@PathVariable String userId) {
+        UserGroup userGroup = userGroupService.getUserGroupsByUserId(userId).stream().findFirst().orElse(null);
+        if (userGroup == null) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(userGroupService.getUserGroupsByUserId(userId));
     }
 
@@ -68,6 +81,10 @@ public class UserGroupController {
             tags = {"User Group Management"}
     )
     public ResponseEntity<UserGroup> updateUserGroup(@PathVariable String id, @RequestBody UserGroup details) {
+        UserGroup existingUserGroup = userGroupService.getUserGroupById(id);
+        if (existingUserGroup == null) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(userGroupService.updateUserGroup(id, details));
     }
 

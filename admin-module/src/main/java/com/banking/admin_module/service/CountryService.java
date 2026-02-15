@@ -1,58 +1,33 @@
 package com.banking.admin_module.service;
 
+import com.banking.admin_module.mapper.CountryMapper;
+import com.banking.admin_module.model.dto.Country.request.CreateCountryRequest;
+import com.banking.admin_module.model.dto.Country.request.UpdateCountryRequest;
+import com.banking.admin_module.model.dto.Country.response.CountryResponse;
 import com.banking.admin_module.model.entity.Country;
 import com.banking.admin_module.repository.CountryRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
-@RequiredArgsConstructor
-@Slf4j
-public class CountryService {
-    private final CountryRepository countryRepository;
+import java.util.stream.Collectors;
 
-    // get all countries
-    public List<Country> getAllCountries(){
-        log.debug("Fetching all countries");
-        return countryRepository.findAll();
-    }
+public interface CountryService {
 
-    //get country by id
-    public Country getCountryById(Long id){
-        Country foundCountry;
-        log.debug("Fetching country with id {}", id);
-        return countryRepository.findById(id)
-                .orElseThrow(() ->{
-                log.error("Country with id {} not found", id);
-                    return new RuntimeException("dont exists");
-                });
-    }
+        // get all countries
+        public List<CountryResponse> getAllCountries();
 
-    // create a country
-    public Country createCountry(Country country){
-        log.debug("Creating new country with name {}", country.getName());
-        return countryRepository.save(country);
-    }
+        //get country by id
+        public CountryResponse getCountryById(Long id);
 
-    //update a country
-    public Country updateCountry(Long id, Country updatedCountry){
-        Country existingCountry = countryRepository.findById(id)
-                .orElseThrow(() -> {
-                    log.error("Country with id {} not found for update", id);
-                    return new RuntimeException("country didnt exists");
-                });
-        if (updatedCountry.getName()!= null){
-            existingCountry.setName(updatedCountry.getName());
-        }
-        if (updatedCountry.getCode()!= null){
-            existingCountry.setCode(updatedCountry.getCode());
-        }
-        if (updatedCountry.getRegion()!= null){
-            existingCountry.setRegion(updatedCountry.getRegion());
-        }
-        log.debug("Updating country with id {}", id);
-        return countryRepository.save(existingCountry);
-    }
+        // create a country
+        public CountryResponse createCountry(CreateCountryRequest request);
+
+        //update a country
+        public CountryResponse updateCountry(Long id, UpdateCountryRequest updatedCountry);
+
+        @Transactional
+        public void deleteCountry(Long id);
 }

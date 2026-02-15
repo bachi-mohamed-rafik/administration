@@ -1,5 +1,8 @@
 package com.banking.admin_module.controller;
 
+import com.banking.admin_module.model.dto.Bank.request.CreateBankRequest;
+import com.banking.admin_module.model.dto.Bank.request.UpdateBankRequest;
+import com.banking.admin_module.model.dto.Bank.response.BankResponse;
 import com.banking.admin_module.model.entity.Bank;
 import com.banking.admin_module.service.BankService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,11 +17,11 @@ import java.util.List;
 import static com.banking.admin_module.utils.constants.APP_ROOT;
 
 @RestController
-@RequestMapping(APP_ROOT+"/banks")
+@RequestMapping(APP_ROOT+"/bankApi")
 @RequiredArgsConstructor
 @Tag(name = "Bank Management", description = "Operations for managing application banks")
 public class BankController {
-    private BankService bankService;
+    private final BankService bankService;
 
     //read all banks controller
     @GetMapping("/allBanks")
@@ -26,8 +29,8 @@ public class BankController {
             summary = "Get all banks",
             description = "Retrieve a list of all banks in the system"
     )
-    public ResponseEntity<List<Bank>> getAllBanks(){
-        List<Bank> banks= bankService.getAllBanks();
+    public ResponseEntity<List<BankResponse>> getAllBanks(){
+        List<BankResponse> banks= bankService.getAllBanks();
 
         if (banks.isEmpty()){
             ResponseEntity.noContent().build();
@@ -41,24 +44,24 @@ public class BankController {
             description = "Retrieve a specific bank by its unique identifier"
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Bank> getBankById(@PathVariable Long id){
+    public ResponseEntity<BankResponse> getBankById(@PathVariable Long id){
         if (bankService.getAllBanks().isEmpty()){
             ResponseEntity.noContent().build();
         }
-        Bank bank = bankService.getBankById(id);
+        BankResponse bank = bankService.getBankById(id);
         return ResponseEntity.ok(bank);
     }
 
-    // create a bank1
+    // create a bank
     @Operation(
             summary = "Create a new bank",
             description = "Add a new bank to the system with the provided details"
     )
-    @PostMapping("/bfsiGroup/{bfsiGroupId}")
-    public ResponseEntity<Bank> createBank(@RequestBody Bank newBank,
-                                           @PathVariable Long bfsiGroupId){
-        Bank savedBank = bankService.createBank(newBank, bfsiGroupId)  ;
-        return new ResponseEntity<>(savedBank, HttpStatus.CREATED);
+    @PostMapping("/bfsiGroupId/{bfsiGroupId}")
+    public ResponseEntity<BankResponse> createBank(
+            @RequestBody CreateBankRequest newBankRequest){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(bankService.createBank(newBankRequest));
     }
 
     // update a bank
@@ -67,8 +70,8 @@ public class BankController {
             summary = "Update an existing bank",
             description = "Modify the details of an existing bank identified by its ID"
     )
-    public ResponseEntity<Bank> updateBank(@PathVariable Long id, @RequestBody Bank bankDetails){
-        Bank updatedBank = bankService.updateBank(id, bankDetails);
+    public ResponseEntity<BankResponse> updateBank(@PathVariable Long id, @RequestBody UpdateBankRequest bankDetails){
+        BankResponse updatedBank = bankService.updateBank(id, bankDetails);
         return new ResponseEntity<>(updatedBank, HttpStatus.OK);
     }
 
