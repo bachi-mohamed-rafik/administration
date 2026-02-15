@@ -1,6 +1,6 @@
 package com.banking.admin_module.controller;
 
-
+import com.banking.admin_module.model.dto.Branch.response.BranchResponse;
 import com.banking.admin_module.model.entity.Branch;
 import com.banking.admin_module.service.BranchService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,11 +28,10 @@ public class BranchController {
             summary = "Get all branches",
             description = "Retrieve a list of all branches"
     )
-    public ResponseEntity<List<Branch>> getAllBranches(){
-        List<Branch> branches= branchService.getAllBranches();
-
+    public ResponseEntity<List<BranchResponse>> getAllBranches(){
+        List<BranchResponse> branches= branchService.getAllBranches();
         if (branches.isEmpty()){
-            ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(branches);
     }
@@ -44,10 +43,10 @@ public class BranchController {
             description = "Retrieve a branch by its unique ID"
     )
     public ResponseEntity<Branch> getBankById(@PathVariable Long id){
+        Branch branch = branchService.getBranchesById(id);
         if (branchService.getAllBranches().isEmpty()){
             ResponseEntity.noContent().build();
         }
-        Branch branch = branchService.getBranchesById(id);
         return ResponseEntity.ok(branch);
     }
 
