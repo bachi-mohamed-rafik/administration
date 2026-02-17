@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import jakarta.persistence.EntityNotFoundException;
-
+import com.banking.admin_module.exception.ResourceAlreadyExistsException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,6 +73,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 errors
         );
         return handleExceptionInternal(ex, response, headers, HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<Object> handleResourceAlreadyExistsException(
+            ResourceAlreadyExistsException ex,
+            WebRequest request) {
+        logger.error("ResourceAlreadyExistsException");
+
+        ErrorResponseGlobal response = ErrorResponseGlobal.of(
+                HttpStatus.CONFLICT,
+                ErrorCode.ERR_INVALID_ARGUMENT.getCode(),
+                ErrorCode.ERR_INVALID_ARGUMENT.getDescription(),
+                ex.getMessage()
+        );
+        return handleExceptionInternal(ex, response, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
     private String buildFieldErrorMessage(FieldError fieldError) {

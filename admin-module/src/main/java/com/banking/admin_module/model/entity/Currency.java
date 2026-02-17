@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,6 @@ public class Currency {
 
     @OneToMany(mappedBy = "currency", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
-    private Set<Bank> banks;
+    private List<Bank> banks;
 
 }

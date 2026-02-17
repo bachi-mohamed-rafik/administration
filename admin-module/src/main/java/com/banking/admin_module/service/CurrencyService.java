@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public interface CurrencyService {
 
         // get all currencies
-        public List<CurrencyResponse> getAllCurrencies();
+        List<CurrencyResponse> getAllCurrencies();
 
         // get currency by id
         public CurrencyResponse getCurrencyById(Long id);
@@ -25,7 +25,7 @@ public interface CurrencyService {
         public CurrencyResponse createCurrency(CreateCurrencyRequest request);
 
         //update a currency
-        public Currency updateCurrency(Long id, UpdateCurrencyRequest updatedCurrency);
+        public CurrencyResponse updateCurrency(Long id, UpdateCurrencyRequest request);
 
         //delete a currency
         public void deleteCurrency(Long id);

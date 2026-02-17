@@ -2,18 +2,21 @@ package com.banking.admin_module.model.dto.Country.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Schema(description = "Request to update an existing country")
 public record UpdateCountryRequest(
 
-        @Schema(description = "Updated country name", example = "Algeria")
-        @NotBlank(message = "Country name is required")
-        String name,
+        @Schema(description = "Le code ISO du pays", example = "DZ")
+        @NotNull(message = "Le code ISO du pays est obligatoire")
+        String code,
 
-        @Schema(description = "Updated geographic region", example = "North Africa")
-        @NotBlank(message = "Region is required")
-        String region
+        @Schema(description = "La région du pays", example = "Afrique du Nord")
+        @NotNull(message = "La région du pays est obligatoire")
+        String region,
 
-        // Note: code is usually NOT updated (it's a unique identifier)
+        @Schema(description = "Le nom du pays", example = "Algérie")
+        @NotNull(message = "Le nom du pays est obligatoire")
+        String name
 ) {
 }

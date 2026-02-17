@@ -64,7 +64,7 @@ public class CurrencyController {
             description = "Modify the details of an existing currency identified by its ID.",
             tags = {"Currencies Management"}
     )
-    public ResponseEntity<Currency> updateCurrency(@PathVariable Long id, @RequestBody UpdateCurrencyRequest request){
+    public ResponseEntity<CurrencyResponse> updateCurrency(@PathVariable Long id, @RequestBody UpdateCurrencyRequest request){
         return ResponseEntity.ok(currencyService.updateCurrency(id, request));
     }
 
