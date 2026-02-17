@@ -1,16 +1,19 @@
 package com.banking.admin_module.service.Impl;
 
+import com.banking.admin_module.mapper.BfsiGroupMapper;
+import com.banking.admin_module.model.dto.BfsiGroup.request.CreateBfsiGroupRequest;
+import com.banking.admin_module.model.dto.BfsiGroup.request.UpdateBfsiGroupRequest;
 import com.banking.admin_module.model.dto.BfsiGroup.response.BfsiGroupResponse;
 import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BfsiRepository;
-import com.banking.admin_module.mapper.BfsiGroupMapper;
 import com.banking.admin_module.service.BfsiGroupService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,52 +23,73 @@ public class BfsiGroupServiceImp implements BfsiGroupService {
     private final BfsiRepository bfsiRepository;
     private final BfsiGroupMapper mapper;
 
-    // get all bfsiGroupId
-    public List<BfsiGroupResponse> getAllBfsiGroups(){
-        log.info("Fetching all BFSI groups");
-        return bfsiRepository.findAllWithBanks()
-                .stream()
-                .map(mapper::toResponse)
-                .collect(Collectors.toList());
+    @Override
+    public List<BfsiGroupResponse> getAllBfsiGroups() {
+        log.info("Début getAllBfsiGroups - récupération de tous les groupes BFSI");
+
+        List<BfsiGroup> bfsiGroups = bfsiRepository.findAll();
+
+        log.info("getAllBfsiGroups terminé - {} groupes trouvés", bfsiGroups.size());
+        return mapper.toResponseList(bfsiGroups);
     }
 
-    // get bfsiGroupId by id
-    public BfsiGroup getBfsiGroupById(Long id){
-        return bfsiRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("id not found"));
+    @Override
+    public BfsiGroupResponse getBfsiGroupById(Long id) {
+        log.info("Début getBfsiGroupById - récupération BFSI group id: {}", id);
+
+        BfsiGroup bfsiGroup = bfsiRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        String.format("BFSI group with ID %d not found", id)
+                ));
+
+        log.info("getBfsiGroupById terminé - BFSI group trouvé: {}", bfsiGroup.getName());
+        return mapper.toResponse(bfsiGroup);
     }
 
-    // create bfsi group
-    public BfsiGroup createBfsiGroup( BfsiGroup bfsiGroup){
-        log.info(" Creating new BFSI group with name: {}", bfsiGroup.getName());
-        return bfsiRepository.save(bfsiGroup);
+    @Override
+    @Transactional
+    public BfsiGroupResponse createBfsiGroup(CreateBfsiGroupRequest request) {
+        log.info("Début createBfsiGroup - création BFSI group avec nom: {}", request.name());
+
+        BfsiGroup bfsiGroup = mapper.toEntity(request);
+        BfsiGroup savedBfsiGroup = bfsiRepository.save(bfsiGroup);
+
+        log.info("createBfsiGroup terminé - BFSI group créé avec id: {}", savedBfsiGroup.getId());
+        return mapper.toResponse(savedBfsiGroup);
     }
 
-    //update bfsiGroupId
-    public BfsiGroup updateBfsiGroup(Long id, BfsiGroup updatedBfsiGroup){
+    @Override
+    @Transactional
+    public BfsiGroupResponse updateBfsiGroup(Long id, UpdateBfsiGroupRequest request) {
+        log.info("Début updateBfsiGroup - mise à jour BFSI group id: {}", id);
 
-        BfsiGroup existingBfsiGroup = bfsiRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("this bfsi dont exists!"));
+        BfsiGroup bfsiGroup = bfsiRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        String.format("BFSI group with ID %d not found", id)
+                ));
 
-        // modify if there is a modification in name
-        if (updatedBfsiGroup.getName() != null){
-            existingBfsiGroup.setName(updatedBfsiGroup.getName());
-        }
+        // Update only non-null fields
+        if (request.name() != null) bfsiGroup.setName(request.name());
+        if (request.description() != null) bfsiGroup.setDescription(request.description());
 
-        // modify if there is a description
-        if (updatedBfsiGroup.getDescription()!= null){
-            existingBfsiGroup.setDescription(updatedBfsiGroup.getDescription());
-        }
-        log.info("Updating BFSI group with id: {}", id);
-        return bfsiRepository.save(existingBfsiGroup) ;
+        BfsiGroup updatedBfsiGroup = bfsiRepository.save(bfsiGroup);
+
+        log.info("updateBfsiGroup terminé - BFSI group mis à jour id: {}", updatedBfsiGroup.getId());
+        return mapper.toResponse(updatedBfsiGroup);
     }
 
-    // delete bfsi Group
-    public void deleteBfsiGroup(Long id){
-        if (!bfsiRepository.existsById(id)){
-            throw new RuntimeException("this bfsi dont exixts");
-        }
-        bfsiRepository.deleteById(id);
-    }
+    @Override
+    @Transactional
+    public void deleteBfsiGroup(Long id) {
+        log.info("Début deleteBfsiGroup - suppression BFSI group id: {}", id);
 
+        BfsiGroup bfsiGroup = bfsiRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        String.format("BFSI group with ID %d not found", id)
+                ));
+
+        bfsiRepository.delete(bfsiGroup);
+
+        log.info("deleteBfsiGroup terminé - BFSI group supprimé id: {}", id);
+    }
 }

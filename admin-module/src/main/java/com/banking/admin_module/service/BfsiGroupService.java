@@ -1,5 +1,7 @@
 package com.banking.admin_module.service;
 
+import com.banking.admin_module.model.dto.BfsiGroup.request.CreateBfsiGroupRequest;
+import com.banking.admin_module.model.dto.BfsiGroup.request.UpdateBfsiGroupRequest;
 import com.banking.admin_module.model.dto.BfsiGroup.response.BfsiGroupResponse;
 import com.banking.admin_module.model.entity.BfsiGroup;
 import com.banking.admin_module.repository.BfsiRepository;
@@ -18,13 +20,13 @@ public interface BfsiGroupService {
      List<BfsiGroupResponse> getAllBfsiGroups();
 
     // get bfsiGroupId by id
-    public BfsiGroup getBfsiGroupById(Long id);
+    public BfsiGroupResponse getBfsiGroupById(Long id);
 
     // create bfsi group
-    public BfsiGroup createBfsiGroup( BfsiGroup bfsiGroup);
+    public BfsiGroupResponse createBfsiGroup(CreateBfsiGroupRequest request);
 
     //update bfsiGroupId
-    public BfsiGroup updateBfsiGroup(Long id, BfsiGroup updatedBfsiGroup);
+    public BfsiGroupResponse updateBfsiGroup(Long id, UpdateBfsiGroupRequest request);
 
     // delete bfsi Group
     public void deleteBfsiGroup(Long id);

@@ -8,13 +8,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface BfsiGroupMapper {
 
     @Mapping(target = "bankCount", expression = "java(bfsiGroup.getBanks() != null ? bfsiGroup.getBanks().size() : 0)")
+    @Mapping(target = "id", source = "id")
     BfsiGroupResponse toResponse(BfsiGroup bfsiGroup);
 
     BfsiGroup toEntity(CreateBfsiGroupRequest request);
 
     void updateEntity(UpdateBfsiGroupRequest request, @MappingTarget BfsiGroup bfsiGroup);
+
+    List<BfsiGroupResponse> toResponseList(List<BfsiGroup> bfsiGroups);
 }
